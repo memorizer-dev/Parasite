@@ -1,8 +1,9 @@
 obj-m := Parasite.o
+KDIR ?= /mnt/linux
 
 all:
-	make -C /lib/modules/$(shell uname -r)/build M=$(shell pwd) modules
+	make -C $(KDIR) M=$(shell pwd) modules
 	rm -r -f *.mod.c .*.cmd *.symvers *.o
 
 clean:
-	make -C /lib/modules/$(shell uname -r)/build M=$(shell pwd) clean
+	make -C $(KDIR) M=$(shell pwd) clean
